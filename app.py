@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", layout="
+st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", layout="centered")
 
 # ============================================
 # 1. CARGAR HEADER HTML
