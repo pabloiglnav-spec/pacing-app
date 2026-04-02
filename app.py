@@ -4,7 +4,7 @@ import pandas as pd
 st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", layout="centered")
 
 # ============================================
-# 1. HERO HEADER (LOGO + TÍTULO + AUTOR + BIZUM)
+# 1. HERO HEADER
 # ============================================
 
 hero_html = """
@@ -26,7 +26,6 @@ hero_html = """
 """
 
 st.markdown(hero_html, unsafe_allow_html=True)
-
 # ============================================
 # 2. TABLAS IF
 # ============================================
@@ -97,7 +96,6 @@ data_full = [
 
 df_703 = pd.DataFrame(data_703, columns=["Experiencia","Peso","Desnivel","IF_min","IF_max"])
 df_full = pd.DataFrame(data_full, columns=["Experiencia","Peso","Desnivel","IF_min","IF_max"])
-
 # ============================================
 # 3. INTERFAZ
 # ============================================
@@ -204,7 +202,6 @@ else:
             file_name=excel_file,
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
-
 # ============================================
 # 7. SECCIÓN "ENTRENA CONMIGO"
 # ============================================
