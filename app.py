@@ -2,7 +2,24 @@ import streamlit as st
 import pandas as pd
 
 # ============================================
-# 1. TABLAS IF PARA 70.3 Y IRONMAN FULL
+# 0. CONFIGURACIÓN INICIAL
+# ============================================
+
+st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", layout="centered")
+
+# ============================================
+# 1. TÍTULO + LOGO
+# ============================================
+
+st.title("Calculadora de Pacing Triatlón (70.3 / Ironman Full)")
+
+# LOGO CENTRADO
+st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
+st.image("logo.png", width=180)
+st.markdown("</div>", unsafe_allow_html=True)
+
+# ============================================
+# 2. TABLAS IF PARA 70.3 Y IRONMAN FULL
 # ============================================
 
 data_703 = [
@@ -73,10 +90,8 @@ df_703 = pd.DataFrame(data_703, columns=["Experiencia","Peso","Desnivel","IF_min
 df_full = pd.DataFrame(data_full, columns=["Experiencia","Peso","Desnivel","IF_min","IF_max"])
 
 # ============================================
-# 2. INTERFAZ
+# 3. INTERFAZ DE USUARIO
 # ============================================
-
-st.title("Calculadora de Pacing Triatlón (70.3 / Ironman Full)")
 
 distancia = st.selectbox("Selecciona la distancia", ["70.3", "Ironman Full"])
 
@@ -96,7 +111,7 @@ experiencia = st.selectbox("Experiencia", ["Baja","Media","Alta"])
 desnivel = st.selectbox("Desnivel del circuito", ["Bajo","Medio","Alto"])
 
 # ============================================
-# 3. CATEGORÍA DE PESO
+# 4. CATEGORÍA DE PESO
 # ============================================
 
 if grasa is None:
@@ -112,7 +127,7 @@ else:
 st.write(f"**Categoría asignada:** {categoria_peso}")
 
 # ============================================
-# 4. SELECCIÓN DE TABLA IF
+# 5. SELECCIÓN DE TABLA IF
 # ============================================
 
 df_if = df_703 if distancia == "70.3" else df_full
@@ -147,7 +162,7 @@ else:
     st.write(f"**NP objetivo:** {np_obj:.0f} W")
 
     # ============================================
-    # 5. POTENCIA RELATIVA
+    # 6. POTENCIA RELATIVA
     # ============================================
 
     st.subheader("Potencia relativa (W/kg)")
@@ -165,7 +180,7 @@ else:
     st.write(f"**Bajadas:** {pot_bajadas:.0f} W ({pot_bajadas/peso:.2f} W/kg)")
 
     # ============================================
-    # 6. DESCARGA EXCEL
+    # 7. DESCARGA EXCEL
     # ============================================
 
     df_calc = pd.DataFrame({
@@ -187,19 +202,49 @@ else:
         )
 
 # ============================================
-# 7. BIZUM
+# 8. SECCIÓN "ENTRENA CONMIGO"
 # ============================================
 
-st.markdown("---")
 st.markdown("""
-<div style="font-size:22px; text-align:center; padding-top:10px;">
-    📱 <strong>Bizum: 600 254 690</strong><br>
-    ¡Gracias por apoyar este proyecto!
+---
+## 💪 Entrena conmigo
+
+Si quieres llevar tu rendimiento al siguiente nivel, trabajo con atletas de todos los niveles en:
+
+- 🏊 Natación técnica y eficiente  
+- 🚴 Pacing y control del esfuerzo en ciclismo  
+- 🏃 Carrera a pie con control de carga  
+- 🧠 Planificación científica y seguimiento semanal  
+- 📊 Análisis de datos (W/kg, NP, TSS, IF, HRV…)  
+- 🧩 Adaptación total a tu vida, trabajo y familia  
+
+### ¿Quieres que sea tu entrenador?
+""")
+
+# CTA WHATSAPP
+st.markdown("""
+<div style="text-align:center; margin-top:20px;">
+    <a href="https://wa.me/34600254690" target="_blank" style="
+        background-color:#00c853;
+        color:white;
+        padding:12px 25px;
+        border-radius:8px;
+        text-decoration:none;
+        font-size:20px;
+        font-weight:bold;">
+        🚀 Empezar a entrenar hoy
+    </a>
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+### También puedes seguirme en Instagram:
+👉 [@pabloiglesiasnavarrete](https://www.instagram.com/pabloiglesiasnavarrete/)
+---
+""")
+
 # ============================================
-# 8. FOOTER
+# 9. FOOTER CON LOGO
 # ============================================
 
 st.markdown("""
@@ -227,6 +272,7 @@ st.markdown("""
 </style>
 
 <div class="footer">
+    <img src="logo.png" width="70"><br>
     © Herramienta creada por <strong>Pablo Iglesias Navarrete</strong> —  
     Entrenador Nacional de Triatlón y Natación —  
     Sígueme en Instagram: 
