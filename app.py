@@ -4,14 +4,29 @@ import pandas as pd
 st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", layout="centered")
 
 # ============================================
-# 1. CARGAR HEADER HTML
+# TITULAR Y PRESENTACIÓN
 # ============================================
 
-with open("header.html", "r", encoding="utf-8") as f:
-    st.markdown(f.read(), unsafe_allow_html=True)
+st.markdown("<h1 style='text-align:center;'>Calculadora de Pacing Triatlón</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align:center;'>70.3 / Ironman Full</h3>", unsafe_allow_html=True)
+
+st.markdown(
+    """
+    <p style='font-size:18px; margin-top:10px; text-align:center;'>
+    Herramienta creada por <strong>Pablo Iglesias Navarrete</strong><br>
+    Entrenador Nacional de Triatlón y Natación
+    </p>
+
+    <p style='font-size:18px; margin-top:15px; text-align:center;'>
+    ☺ Si esta herramienta te ayuda, puedes invitarme a un café o colaborar por Bizum<br>
+    <strong>600 254 690</strong>
+    </p>
+    """,
+    unsafe_allow_html=True
+)
 
 # ============================================
-# 2. TABLAS IF
+# TABLAS IF
 # ============================================
 
 data_703 = [
@@ -82,7 +97,7 @@ df_703 = pd.DataFrame(data_703, columns=["Experiencia","Peso","Desnivel","IF_min
 df_full = pd.DataFrame(data_full, columns=["Experiencia","Peso","Desnivel","IF_min","IF_max"])
 
 # ============================================
-# 3. INTERFAZ
+# INTERFAZ
 # ============================================
 
 distancia = st.selectbox("Selecciona la distancia", ["70.3", "Ironman Full"])
@@ -101,7 +116,7 @@ experiencia = st.selectbox("Experiencia", ["Baja","Media","Alta"])
 desnivel = st.selectbox("Desnivel del circuito", ["Bajo","Medio","Alto"])
 
 # ============================================
-# 4. CATEGORÍA DE PESO
+# CATEGORÍA DE PESO
 # ============================================
 
 if grasa is None:
@@ -112,7 +127,7 @@ else:
 st.write(f"**Categoría asignada:** {categoria_peso}")
 
 # ============================================
-# 5. SELECCIÓN DE TABLA IF
+# SELECCIÓN DE TABLA IF
 # ============================================
 
 df_if = df_703 if distancia == "70.3" else df_full
@@ -158,38 +173,8 @@ else:
     st.write(f"**Llano:** {pot_llano:.0f} W ({pot_llano/peso:.2f} W/kg)")
     st.write(f"**Bajadas:** {pot_bajadas:.0f} W ({pot_bajadas/peso:.2f} W/kg)")
 
-    # ============================================
-    # 6. EXCEL
-    # ============================================
-
-    df_calc = pd.DataFrame({
-        "Variable": [
-            "Distancia","FTP","Peso","% Grasa","Peso magro","Experiencia",
-            "Categoría Peso","Desnivel","IF_min","IF_max","IF_recomendado",
-            "NP","Subidas","Llano","Bajadas"
-        ],
-        "Valor": [
-            distancia, ftp, peso, grasa, peso_magro, experiencia,
-            categoria_peso, desnivel, if_min, if_max, if_rec,
-            np_obj, pot_subidas, pot_llano, pot_bajadas
-        ]
-    })
-
-    excel_file = "pacing_triatlon.xlsx"
-    with pd.ExcelWriter(excel_file) as writer:
-        df_if.to_excel(writer, sheet_name="Tabla_IF", index=False)
-        df_calc.to_excel(writer, sheet_name="Pacing", index=False)
-
-    with open(excel_file, "rb") as f:
-        st.download_button(
-            label="Descargar Excel",
-            data=f,
-            file_name=excel_file,
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
-
 # ============================================
-# 7. SECCIÓN "ENTRENA CONMIGO"
+# SECCIÓN "ENTRENA CONMIGO"
 # ============================================
 
 st.markdown("---")
@@ -215,46 +200,3 @@ st.markdown(
 )
 
 st.markdown("---")
-
-# ============================================
-# 8. FOOTER
-# ============================================
-
-footer_css = """
-<style>
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #111111;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 15px;
-    opacity: 0.95;
-}
-.footer a {
-    color: #4EA8FF;
-    text-decoration: none;
-    font-weight: bold;
-}
-.footer a:hover {
-    color: #82C7FF;
-}
-</style>
-"""
-
-footer_html = """
-<div class='footer'>
-    <img src='logo.png' width='70'><br>
-    © Herramienta creada por <strong>Pablo Iglesias Navarrete</strong> — 
-    Entrenador Nacional de Triatlón y Natación — Instagram: 
-    <a href='https://www.instagram.com/pabloiglesiasnavarrete/' target='_blank'>
-        @pabloiglesiasnavarrete
-    </a>
-</div>
-"""
-
-st.markdown(footer_css, unsafe_allow_html=True)
-st.markdown(footer_html, unsafe_allow_html=True)
