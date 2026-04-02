@@ -8,15 +8,25 @@ import pandas as pd
 st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", layout="centered")
 
 # ============================================
-# 1. TÍTULO + LOGO
+# 1. TÍTULO + LOGO + BIZUM
 # ============================================
 
 st.title("Calculadora de Pacing Triatlón (70.3 / Ironman Full)")
 
-# LOGO CENTRADO
-st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
-st.image("logo.png", width=180)
-st.markdown("</div>", unsafe_allow_html=True)
+# LOGO CENTRADO BONITO
+st.markdown("""
+<div style='text-align:center; margin-top:20px; margin-bottom:10px;'>
+    <img src='logo.png' width='220' style='border-radius:10px;'>
+</div>
+""", unsafe_allow_html=True)
+
+# BIZUM + CAFÉ
+st.markdown("""
+<div style='text-align:center; font-size:20px; margin-top:10px;'>
+    ☕ Si esta herramienta te ayuda, puedes invitarme a un café o colaborar por Bizum:<br>
+    <strong>600 254 690</strong>
+</div>
+""", unsafe_allow_html=True)
 
 # ============================================
 # 2. TABLAS IF PARA 70.3 Y IRONMAN FULL
@@ -216,7 +226,7 @@ Si quieres llevar tu rendimiento al siguiente nivel, trabajo con atletas de todo
 - 🏃 Carrera a pie con control de carga  
 - 🧠 Planificación científica y seguimiento semanal  
 - 📊 Análisis de datos (W/kg, NP, TSS, IF, HRV…)  
-- 🧩 Adaptación total a tu vida, trabajo y familia  
+- 🌿 Adaptación total a tu vida, trabajo y familia  
 
 ### ¿Quieres que sea tu entrenador?
 """)
@@ -237,14 +247,10 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-### También puedes seguirme en Instagram:
-👉 [@pabloiglesiasnavarrete](https://www.instagram.com/pabloiglesiasnavarrete/)
----
-""")
+st.markdown("---")
 
 # ============================================
-# 9. FOOTER CON LOGO
+# 9. FOOTER CON LOGO + INSTAGRAM
 # ============================================
 
 st.markdown("""
@@ -274,10 +280,4 @@ st.markdown("""
 <div class="footer">
     <img src="logo.png" width="70"><br>
     © Herramienta creada por <strong>Pablo Iglesias Navarrete</strong> —  
-    Entrenador Nacional de Triatlón y Natación —  
-    Sígueme en Instagram: 
-    <a href="https://www.instagram.com/pabloiglesiasnavarrete/" target="_blank">
-        @pabloiglesiasnavarrete
-    </a>
-</div>
-""", unsafe_allow_html=True)
+    Entrenador Nacional de Triatlón y Natación
