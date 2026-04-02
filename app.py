@@ -7,26 +7,25 @@ st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", l
 # 1. HERO HEADER (LOGO + TÍTULO + AUTOR + BIZUM)
 # ============================================
 
-st.markdown(
-    """
-    <div style='text-align:center; margin-top:-20px;'>
-        <img src='logo.png' width='200' style='margin-bottom:10px;'>
-        <h1 style='margin-bottom:0;'>Calculadora de Pacing Triatlón</h1>
-        <h3 style='margin-top:0; color:#555;'>70.3 / Ironman Full</h3>
+hero_html = """
+<div style='text-align:center; margin-top:-20px;'>
+    <img src='logo.png' width='200' style='margin-bottom:10px;'>
+    <h1 style='margin-bottom:0;'>Calculadora de Pacing Triatlón</h1>
+    <h3 style='margin-top:0; color:#555;'>70.3 / Ironman Full</h3>
 
-        <p style='font-size:18px; margin-top:10px;'>
-            Herramienta creada por <strong>Pablo Iglesias Navarrete</strong><br>
-            Entrenador Nacional de Triatlón y Natación
-        </p>
+    <p style='font-size:18px; margin-top:10px;'>
+        Herramienta creada por <strong>Pablo Iglesias Navarrete</strong><br>
+        Entrenador Nacional de Triatlón y Natación
+    </p>
 
-        <p style='font-size:18px; margin-top:15px;'>
-            ☕ Si esta herramienta te ayuda, puedes invitarme a un café o colaborar por Bizum:<br>
-            <strong>600 254 690</strong>
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    <p style='font-size:18px; margin-top:15px;'>
+        ☕ Si esta herramienta te ayuda, puedes invitarme a un café o colaborar por Bizum:<br>
+        <strong>600 254 690</strong>
+    </p>
+</div>
+"""
+
+st.markdown(hero_html, unsafe_allow_html=True)
 
 # ============================================
 # 2. TABLAS IF
@@ -238,23 +237,41 @@ st.markdown("---")
 # 8. FOOTER
 # ============================================
 
-st.markdown(
-    "<style>"
-    ".footer {position: fixed; left: 0; bottom: 0; width: 100%; "
-    "background-color: #111111; color: white; text-align: center; "
-    "padding: 10px 0; font-size: 15px; opacity: 0.95;}"
-    ".footer a {color: #4EA8FF; text-decoration: none; font-weight: bold;}"
-    ".footer a:hover {color: #82C7FF;}"
-    "</style>",
-    unsafe_allow_html=True
-)
+footer_css = """
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #111111;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 15px;
+    opacity: 0.95;
+}
+.footer a {
+    color: #4EA8FF;
+    text-decoration: none;
+    font-weight: bold;
+}
+.footer a:hover {
+    color: #82C7FF;
+}
+</style>
+"""
 
-st.markdown(
-    "<div class='footer'>"
-    "<img src='logo.png' width='70'><br>"
-    "© Herramienta creada por <strong>Pablo Iglesias Navarrete</strong> — "
-    "Entrenador Nacional de Triatlón y Natación — Instagram: "
-    "<a href='https://www.instagram.com/pabloiglesiasnavarrete/' target='_blank'>"
-    "@pabloiglesiasnavarrete</a></div>",
-    unsafe_allow_html=True
-)
+footer_html = """
+<div class='footer'>
+    <img src='logo.png' width='70'><br>
+    © Herramienta creada por <strong>Pablo Iglesias Navarrete</strong> — 
+    Entrenador Nacional de Triatlón y Natación — Instagram: 
+    <a href='https://www.instagram.com/pabloiglesiasnavarrete/' target='_blank'>
+        @pabloiglesiasnavarrete
+    </a>
+</div>
+"""
+
+st.markdown(footer_css, unsafe_allow_html=True)
+st.markdown(footer_html, unsafe_allow_html=True)
