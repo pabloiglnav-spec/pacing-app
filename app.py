@@ -197,6 +197,114 @@ else:
     # 7. DESCARGA EXCEL
     # ============================================
 
-    df_calc = pd.DataFrame({
-        "Variable": ["Distancia","FTP","Peso","% Grasa","Peso magro","Experiencia","Categoría Peso","Desnivel","IF_min","IF_max","IF_recomendado","NP","Subidas","Llano","Bajadas"],
-        "Valor": [distancia,ftp,p
+    df_calc = pd.DataFrame(
+        {
+            "Variable": [
+                "Distancia",
+                "FTP",
+                "Peso",
+                "% Grasa",
+                "Peso magro",
+                "Experiencia",
+                "Categoría Peso",
+                "Desnivel",
+                "IF_min",
+                "IF_max",
+                "IF_recomendado",
+                "NP",
+                "Subidas",
+                "Llano",
+                "Bajadas",
+            ],
+            "Valor": [
+                distancia,
+                ftp,
+                peso,
+                grasa,
+                peso_magro,
+                experiencia,
+                categoria_peso,
+                desnivel,
+                if_min,
+                if_max,
+                if_rec,
+                np_obj,
+                pot_subidas,
+                pot_llano,
+                pot_bajadas,
+            ],
+        }
+    )
+
+    excel_file = "pacing_triatlon.xlsx"
+    with pd.ExcelWriter(excel_file) as writer:
+        df_if.to_excel(writer, sheet_name="Tabla_IF", index=False)
+        df_calc.to_excel(writer, sheet_name="Pacing", index=False)
+
+    with open(excel_file, "rb") as f:
+        st.download_button(
+            label="Descargar Excel",
+            data=f,
+            file_name=excel_file,
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
+# ============================================
+# 8. SECCIÓN "ENTRENA CONMIGO"
+# ============================================
+
+st.markdown(
+    """
+---
+## 💪 Entrena conmigo
+
+Si quieres llevar tu rendimiento al siguiente nivel, trabajo con atletas de todos los niveles en:
+
+- 🏊 Natación técnica y eficiente  
+- 🚴 Pacing y control del esfuerzo en ciclismo  
+- 🏃 Carrera a pie con control de carga  
+- 🧠 Planificación científica y seguimiento semanal  
+- 📊 Análisis de datos (W/kg, NP, TSS, IF, HRV…)  
+- 🌿 Adaptación total a tu vida, trabajo y familia  
+
+### ¿Quieres que sea tu entrenador?
+"""
+)
+
+# CTA WHATSAPP
+st.markdown(
+    """
+<div style="text-align:center; margin-top:20px;">
+    <a href="https://wa.me/34600254690" target="_blank" style="
+        background-color:#00c853;
+        color:white;
+        padding:12px 25px;
+        border-radius:8px;
+        text-decoration:none;
+        font-size:20px;
+        font-weight:bold;">
+        🚀 Empezar a entrenar hoy
+    </a>
+</div>
+""",
+    unsafe_allow_html=True
+)
+
+st.markdown("---")
+
+# ============================================
+# 9. FOOTER CON LOGO + INSTAGRAM
+# ============================================
+
+st.markdown(
+    """
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #111111;
+    color: white;
+    text-align: center;
+    padding
