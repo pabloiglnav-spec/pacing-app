@@ -4,20 +4,27 @@ import pandas as pd
 st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", layout="centered")
 
 # ============================================
-# 1. TÍTULO + LOGO + BIZUM
+# 1. HERO HEADER (LOGO + TÍTULO + AUTOR + BIZUM)
 # ============================================
 
-st.title("Calculadora de Pacing Triatlón (70.3 / Ironman Full)")
-
-st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
-st.image("logo.png", width=220)
-st.markdown("</div>", unsafe_allow_html=True)
-
 st.markdown(
-    "<div style='text-align:center; font-size:20px; margin-top:10px;'>"
-    "☕ Si esta herramienta te ayuda, puedes invitarme a un café o colaborar por Bizum:<br>"
-    "<strong>600 254 690</strong>"
-    "</div>",
+    """
+    <div style='text-align:center; margin-top:-20px;'>
+        <img src='logo.png' width='200' style='margin-bottom:10px;'>
+        <h1 style='margin-bottom:0;'>Calculadora de Pacing Triatlón</h1>
+        <h3 style='margin-top:0; color:#555;'>70.3 / Ironman Full</h3>
+
+        <p style='font-size:18px; margin-top:10px;'>
+            Herramienta creada por <strong>Pablo Iglesias Navarrete</strong><br>
+            Entrenador Nacional de Triatlón y Natación
+        </p>
+
+        <p style='font-size:18px; margin-top:15px;'>
+            ☕ Si esta herramienta te ayuda, puedes invitarme a un café o colaborar por Bizum:<br>
+            <strong>600 254 690</strong>
+        </p>
+    </div>
+    """,
     unsafe_allow_html=True
 )
 
