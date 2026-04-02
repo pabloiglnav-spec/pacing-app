@@ -4,28 +4,12 @@ import pandas as pd
 st.set_page_config(page_title="Pacing Triatlón — Pablo Iglesias Navarrete", layout="centered")
 
 # ============================================
-# 1. HERO HEADER
+# 1. CARGAR HEADER HTML
 # ============================================
 
-hero_html = """
-<div style='text-align:center; margin-top:-20px;'>
-    <img src='logo.png' width='200' style='margin-bottom:10px;'>
-    <h1 style='margin-bottom:0;'>Calculadora de Pacing Triatlón</h1>
-    <h3 style='margin-top:0; color:#555;'>70.3 / Ironman Full</h3>
+with open("header.html", "r", encoding="utf-8") as f:
+    st.markdown(f.read(), unsafe_allow_html=True)
 
-    <p style='font-size:18px; margin-top:10px;'>
-        Herramienta creada por <strong>Pablo Iglesias Navarrete</strong><br>
-        Entrenador Nacional de Triatlón y Natación
-    </p>
-
-    <p style='font-size:18px; margin-top:15px;'>
-        ☕ Si esta herramienta te ayuda, puedes invitarme a un café o colaborar por Bizum:<br>
-        <strong>600 254 690</strong>
-    </p>
-</div>
-"""
-
-st.markdown(hero_html, unsafe_allow_html=True)
 # ============================================
 # 2. TABLAS IF
 # ============================================
@@ -96,6 +80,7 @@ data_full = [
 
 df_703 = pd.DataFrame(data_703, columns=["Experiencia","Peso","Desnivel","IF_min","IF_max"])
 df_full = pd.DataFrame(data_full, columns=["Experiencia","Peso","Desnivel","IF_min","IF_max"])
+
 # ============================================
 # 3. INTERFAZ
 # ============================================
@@ -202,6 +187,7 @@ else:
             file_name=excel_file,
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
+
 # ============================================
 # 7. SECCIÓN "ENTRENA CONMIGO"
 # ============================================
